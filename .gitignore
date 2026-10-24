@@ -1,0 +1,17 @@
+# Build output
+dist/
+
+# Private keys and signing certificates never go in the repo
+*.pem
+*.key
+*.pfx
+*.p12
+*.snk
+
+# Editor and OS files
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

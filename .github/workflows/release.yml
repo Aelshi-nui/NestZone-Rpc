@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      HAS_SIGN_CERT: ${{ secrets.SIGN_CERT_PFX != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Signs the exe only when a real code-signing certificate is stored in
+      # the repository secrets SIGN_CERT_PFX (base64) and SIGN_CERT_PASSWORD.
+      - name: Import signing certificate
+        if: ${{ env.HAS_SIGN_CERT == 'true' }}
+        env:
+          SIGN_CERT_PFX: ${{ secrets.SIGN_CERT_PFX }}
+          SIGN_CERT_PASSWORD: ${{ secrets.SIGN_CERT_PASSWORD }}
+        shell: pwsh
+        run: |
+          $pfx = Join-Path $env:RUNNER_TEMP 'sign.pfx'
+          [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:SIGN_CERT_PFX))
+          $pw = ConvertTo-SecureString $env:SIGN_CERT_PASSWORD -AsPlainText -Force
+          $cert = Import-PfxCertificate -FilePath $pfx -CertStoreLocation Cert:\CurrentUser\My -Password $pw
+          Remove-Item $pfx
+          "NZ_SIGN_THUMBPRINT=$($cert.Thumbprint)" >> $env:GITHUB_ENV
+
+      - name: Build helper exe
+        shell: pwsh
+        run: ./build-helper.ps1
+
+      - name: Build extension zips
+        run: node build-extension.mjs
+
+      - name: Checksums
+        shell: pwsh
+        run: |
+          Set-Location dist
+          $files = 'NestZoneDiscord.exe', 'nestzone-discord-chrome.zip', 'nestzone-discord-firefox.zip'
+          $lines = foreach ($f in $files) { "{0}  {1}" -f (Get-FileHash $f -Algorithm SHA256).Hash.ToLower(), $f }
+          [IO.File]::WriteAllText("$PWD\SHA256SUMS.txt", ($lines -join "`n") + "`n")
+          Get-Content SHA256SUMS.txt
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/NestZoneDiscord.exe
+            dist/nestzone-discord-chrome.zip
+            dist/nestzone-discord-firefox.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          gh release create $env:GITHUB_REF_NAME --title "NestZone for Discord $env:GITHUB_REF_NAME" --generate-notes `
+            dist/NestZoneDiscord.exe dist/nestzone-discord-chrome.zip dist/nestzone-discord-firefox.zip dist/SHA256SUMS.txt

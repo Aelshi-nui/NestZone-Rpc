@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">NestZone for Discord</div>
+    <div id="statusLine" class="status muted">Checking…</div>
+    <div id="nowBox" class="now" hidden>
+      <div id="nowDetails" class="now-details"></div>
+      <div id="nowState" class="now-state"></div>
+    </div>
+    <label class="switch-row">
+      <span>Show on Discord</span>
+      <input type="checkbox" id="enabled">
+    </label>
+    <a class="link" id="settingsLink" href="https://nestzone.tech/account" target="_blank" rel="noopener noreferrer">NestZone settings</a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
