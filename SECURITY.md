@@ -10,7 +10,7 @@ The extension and the helper were reviewed line by line before this release. The
 
 | Area | Problem | Fix |
 | --- | --- | --- |
-| Extension | A script running on nestzone.tech could set the status button to any https link, for example a phishing page. | The **Watch / Read on NestZone** button only accepts `https://nestzone.tech/...`. AniList links are built from a whole-number ID only. Covers must be `https://`. |
+| Extension | A script running on nestzone.tech could set the status button to any https link, for example a phishing page. | The **Watch now / Read now** button only accepts `https://nestzone.tech/...`, and the **NestZone** button is fixed to `https://nestzone.tech/`. AniList links are built from a whole-number ID only. Covers must be `https://`. |
 | Extension | The background script accepted connections and settings messages without checking who sent them. | Ports must come from this extension's content script in a `https://nestzone.tech` tab, and settings changes from its own popup page. |
 | Extension | The popup built the download link with `innerHTML`. | It builds the link with DOM calls and `rel="noopener noreferrer"`. |
 | Extension | An unhandled promise rejection when the popup was closed. | Caught. |

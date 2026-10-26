@@ -9,7 +9,7 @@ namespace NestZoneDiscord
         internal const string ChromeExtId = "fkpdelihmdmckifbemjjfpblaoingmen";
         internal const string FirefoxExtId = "discord@nestzone.tech";
         internal const string ClientId = "1558768405585203200";
-        internal const string Version = "1.0.1";
+        internal const string Version = "1.0.2";
         internal const string ExeUrl = "https://github.com/Aelshi-nui/NestZone-Rpc/releases/latest/download/NestZoneDiscord.exe";
 
         private const uint LOAD_LIBRARY_SEARCH_SYSTEM32 = 0x00000800;

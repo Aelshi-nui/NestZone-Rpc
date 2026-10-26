@@ -25,7 +25,7 @@ Shows what you watch and read on [NestZone](https://nestzone.tech) in your Disco
 | Watching | **Watching NestZone** with the show, the episode and its name, sub or dub, the cover and a progress bar |
 | Reading | **Playing NestZone** with "Reading" and the title, the chapter and page, the cover and how long you've been reading |
 
-Each status has a **Watch on NestZone** or **Read on NestZone** button and a **View on AniList** button. 18+ titles only show when you turn that on, and always without their cover.
+Each status has a **Watch now** or **Read now** button that opens the episode or title on NestZone, and a **NestZone** button that opens the site. The title and the cover link to AniList. 18+ titles only show when you turn that on, and always without their cover.
 
 ## How it works
 
@@ -195,7 +195,7 @@ It's useful when you [open an issue](https://github.com/Aelshi-nui/NestZone-Rpc/
 - The extension asks for only two permissions, `nativeMessaging` and `storage`, and runs only on `https://nestzone.tech`.
 - It accepts messages only from its own content script in a nestzone.tech tab and from its own popup.
 - The helper only answers this extension's ID, has no network code, needs no admin rights and loads system DLLs from `System32` only.
-- Buttons in your status can only link to `https://nestzone.tech` and `https://anilist.co`.
+- Buttons in your status can only link to `https://nestzone.tech`. The title and cover link to `https://anilist.co`.
 
 See [SECURITY.md](SECURITY.md) for the full review and how to report a problem.
 

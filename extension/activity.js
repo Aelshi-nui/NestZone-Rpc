@@ -97,8 +97,8 @@ function buildWatch(p, now) {
   }
 
   const buttons = [];
-  const b1 = makeButton('Watch on NestZone', siteUrl(p.url));
-  const b2 = makeButton('View on AniList', anilist);
+  const b1 = makeButton('Watch now', siteUrl(p.url));
+  const b2 = makeButton('NestZone', SITE);
   if (b1) buttons.push(b1);
   if (b2) buttons.push(b2);
   if (buttons.length) activity.buttons = buttons.slice(0, 2);
@@ -157,8 +157,8 @@ function buildRead(p) {
   if (since) activity.timestamps = { start: Math.round(since) };
 
   const buttons = [];
-  const b1 = makeButton('Read on NestZone', siteUrl(p.url));
-  const b2 = makeButton('View on AniList', anilist);
+  const b1 = makeButton('Read now', siteUrl(p.url));
+  const b2 = makeButton('NestZone', SITE);
   if (b1) buttons.push(b1);
   if (b2) buttons.push(b2);
   if (buttons.length) activity.buttons = buttons.slice(0, 2);

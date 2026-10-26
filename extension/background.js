@@ -4,7 +4,7 @@ import { buildActivity } from './activity.js';
 const api = (typeof globalThis.browser !== 'undefined' && globalThis.browser)
   ? globalThis.browser : chrome;
 
-const VERSION = '1.0.1';
+const VERSION = '1.0.2';
 const SITE_ORIGIN = 'https://nestzone.tech';
 
 // Only our own content script, running in a nestzone.tech tab, may talk to us.

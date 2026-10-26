@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NestZone for Discord",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shows what you watch and read on NestZone in your Discord status.",
   "permissions": ["nativeMessaging", "storage"],
   "background": {

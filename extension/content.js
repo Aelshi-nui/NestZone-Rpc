@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var api = (typeof browser !== 'undefined' && browser) ? browser : chrome;
-  var VERSION = '1.0.1';
+  var VERSION = '1.0.2';
   document.documentElement.dataset.nzDiscord = VERSION;
 
   var port = null;
