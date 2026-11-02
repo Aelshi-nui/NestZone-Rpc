@@ -1,10 +1,10 @@
 // activity.js: pure Discord IPC activity builder (ES module).
 // buildActivity(presence, now) -> raw snake_case activity object, or null.
 
-const SMALL_IMAGE = 'https://nestzone.tech/icon-192.png';
-const SITE = 'https://nestzone.tech/';
+const SMALL_IMAGE = 'https://nestzone.site/icon-192.png';
+const SITE = 'https://nestzone.site/';
 
-// The "Watch/Read on NestZone" button may only point at nestzone.tech, so a
+// The "Watch/Read on NestZone" button may only point at nestzone.site, so a
 // script injected into the site cannot turn the button into a phishing link.
 function siteUrl(value) {
   const u = goodUrl(value);

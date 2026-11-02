@@ -4,10 +4,10 @@ import { buildActivity } from './activity.js';
 const api = (typeof globalThis.browser !== 'undefined' && globalThis.browser)
   ? globalThis.browser : chrome;
 
-const VERSION = '1.0.2';
-const SITE_ORIGIN = 'https://nestzone.tech';
+const VERSION = '1.0.3';
+const SITE_ORIGIN = 'https://nestzone.site';
 
-// Only our own content script, running in a nestzone.tech tab, may talk to us.
+// Only our own content script, running in a nestzone.site tab, may talk to us.
 function fromSite(sender) {
   if (!sender || sender.id !== api.runtime.id || !sender.tab) return false;
   const url = sender.origin || sender.url || '';

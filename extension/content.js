@@ -1,4 +1,4 @@
-// content.js: page <-> extension bridge on https://nestzone.tech (document_start).
+// content.js: page <-> extension bridge on https://nestzone.site (document_start).
 (function () {
   'use strict';
   var api = (typeof browser !== 'undefined' && browser) ? browser : chrome;
